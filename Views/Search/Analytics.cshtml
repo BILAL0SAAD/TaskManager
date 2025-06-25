@@ -1,0 +1,219 @@
+<!-- Views/Search/Analytics.cshtml -->
+@model TaskManager.Web.ViewModels.Search.SearchAnalyticsViewModel
+@{
+    ViewData["Title"] = "Search Analytics";
+}
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2><i class="fas fa-chart-bar me-2"></i>Search Analytics</h2>
+            <p class="text-muted">Insights into your task data and search patterns</p>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="text-danger mb-2">
+                        <i class="fas fa-exclamation-triangle fa-2x"></i>
+                    </div>
+                    <h4 class="mb-1">@Model.TotalOverdue</h4>
+                    <p class="text-muted mb-0">Overdue Tasks</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="text-primary mb-2">
+                        <i class="fas fa-search fa-2x"></i>
+                    </div>
+                    <h4 class="mb-1">@Model.TotalSearches</h4>
+                    <p class="text-muted mb-0">Total Searches</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="text-success mb-2">
+                        <i class="fas fa-tachometer-alt fa-2x"></i>
+                    </div>
+                    <h4 class="mb-1">@($"{Model.AverageSearchTime:F1}ms")</h4>
+                    <p class="text-muted mb-0">Avg Search Time</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="text-info mb-2">
+                        <i class="fas fa-fire fa-2x"></i>
+                    </div>
+                    <h4 class="mb-1">@Model.PopularQueries.Count</h4>
+                    <p class="text-muted mb-0">Unique Queries</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Status Distribution -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Task Status Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="statusChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Priority Distribution -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Task Priority Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="priorityChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Popular Search Queries -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Popular Search Queries</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.PopularQueries.Any())
+                    {
+                        @foreach (var query in Model.PopularQueries.Take(10))
+                        {
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>@query.Key</span>
+                                <span class="badge bg-primary">@query.Value</span>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">No search data available yet.</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Overdue Tasks -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Overdue Tasks</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.OverdueTasks.Any())
+                    {
+                        @foreach (var task in Model.OverdueTasks.Take(5))
+                        {
+                            <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                                <div>
+                                    <strong>@task.Title</strong>
+                                    <br>
+                                    <small class="text-muted">Due: @task.DueDate?.ToString("MMM dd, yyyy")</small>
+                                </div>
+                                <div>
+                                    <span class="badge bg-@(task.Priority.ToLower())">@task.Priority</span>
+                                </div>
+                            </div>
+                        }
+                        @if (Model.OverdueTasks.Count > 5)
+                        {
+                            <a asp-controller="Search" asp-action="Index" asp-route-showOverdueOnly="true" 
+                               class="btn btn-sm btn-outline-primary">
+                                View All Overdue Tasks (@Model.TotalOverdue)
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">No overdue tasks! 🎉</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Status Distribution Chart
+        const statusCtx = document.getElementById('statusChart').getContext('2d');
+        new Chart(statusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.StatusDistribution.Keys)),
+                datasets: [{
+                    data: @Html.Raw(Json.Serialize(Model.StatusDistribution.Values)),
+                    backgroundColor: [
+                        '#6c757d', // Todo - gray
+                        '#0d6efd', // InProgress - blue
+                        '#ffc107', // Review - yellow
+                        '#198754', // Done - green
+                        '#dc3545'  // Cancelled - red
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Priority Distribution Chart
+        const priorityCtx = document.getElementById('priorityChart').getContext('2d');
+        new Chart(priorityCtx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.PriorityDistribution.Keys)),
+                datasets: [{
+                    label: 'Tasks',
+                    data: @Html.Raw(Json.Serialize(Model.PriorityDistribution.Values)),
+                    backgroundColor: [
+                        '#198754', // Low - green
+                        '#ffc107', // Medium - yellow
+                        '#fd7e14', // High - orange
+                        '#dc3545'  // Critical - red
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+}

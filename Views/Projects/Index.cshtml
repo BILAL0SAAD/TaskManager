@@ -1,0 +1,183 @@
+@model TaskManager.Web.ViewModels.Projects.ProjectListViewModel
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-0">
+            <i class="fas fa-folder me-2 text-primary"></i>My Projects
+        </h1>
+        <p class="text-muted mb-0">Organize your tasks into projects</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus me-2"></i>New Project
+    </a>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="text-primary mb-2">
+                    <i class="fas fa-folder fa-2x"></i>
+                </div>
+                <h4 class="mb-1">@Model.TotalProjects</h4>
+                <p class="text-muted mb-0">Total Projects</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="text-success mb-2">
+                    <i class="fas fa-play-circle fa-2x"></i>
+                </div>
+                <h4 class="mb-1">@Model.ActiveProjects</h4>
+                <p class="text-muted mb-0">Active Projects</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="text-info mb-2">
+                    <i class="fas fa-check-circle fa-2x"></i>
+                </div>
+                <h4 class="mb-1">@Model.CompletedProjects</h4>
+                <p class="text-muted mb-0">Completed Projects</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Search Bar -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-10">
+                <input type="text" name="search" value="@Model.SearchTerm" class="form-control" placeholder="Search projects...">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-outline-primary w-100">
+                    <i class="fas fa-search me-1"></i>Search
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Projects Grid -->
+@if (Model.Projects.Any())
+{
+    <div class="row">
+        @foreach (var project in Model.Projects)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle me-3" style="width: 40px; height: 40px; background-color: @project.Color;"></div>
+                            <div class="flex-grow-1">
+                                <h5 class="card-title mb-0">
+                                    <a asp-action="Details" asp-route-id="@project.Id" class="text-decoration-none">
+                                        @project.Name
+                                    </a>
+                                </h5>
+                                <small class="text-muted">@project.TaskCount tasks</small>
+                            </div>
+                        </div>
+                        
+                        @if (!string.IsNullOrEmpty(project.Description))
+                        {
+                            <p class="card-text text-muted mb-3">
+                                @(project.Description.Length > 100 ? project.Description.Substring(0, 100) + "..." : project.Description)
+                            </p>
+                        }
+                        
+                        <div class="progress mb-3" style="height: 8px;">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: @project.CompletionPercentage%; background-color: @project.Color;"
+                                 aria-valuenow="@project.CompletionPercentage" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">@Math.Round(project.CompletionPercentage)% Complete</small>
+                            <div class="btn-group" role="group">
+                                <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-outline-danger" 
+                                        onclick="confirmDelete(@project.Id, '@project.Name')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <small class="text-muted">
+                            <i class="fas fa-calendar me-1"></i>
+                            Created @project.CreatedAt.ToString("MMM dd, yyyy")
+                        </small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <i class="fas fa-folder-open fa-4x text-muted mb-3"></i>
+        <h4 class="text-muted">No projects found</h4>
+        @if (!string.IsNullOrEmpty(Model.SearchTerm))
+        {
+            <p class="text-muted">No projects match your search criteria.</p>
+            <a asp-action="Index" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i>Show All Projects
+            </a>
+        }
+        else
+        {
+            <p class="text-muted">Create your first project to organize your tasks!</p>
+        }
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Create Project
+        </a>
+    </div>
+}
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete "<span id="projectName"></span>"?</p>
+                <p class="text-warning"><small>This will also remove the project from all associated tasks.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" method="post" style="display: inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmDelete(projectId, projectName) {
+            document.getElementById('projectName').textContent = projectName;
+            document.getElementById('deleteForm').action = '/Projects/Delete/' + projectId;
+            new bootstrap.Modal(document.getElementById('deleteModal')).show();
+        }
+    </script>
+}

@@ -1,0 +1,68 @@
+2025-06-24 15:53:00.747 +03:00 [INF] Start installing Hangfire SQL objects...
+2025-06-24 15:53:01.309 +03:00 [INF] Hangfire SQL objects installed.
+2025-06-24 15:53:02.782 +03:00 [INF] Now listening on: http://localhost:5086
+2025-06-24 15:53:02.792 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-MG727EBL\SQLEXPRESS@TaskManagerDB'
+2025-06-24 15:53:02.794 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-06-24 15:53:02.795 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-06-24 15:53:02.806 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-24 15:53:02.808 +03:00 [INF] Hosting environment: Development
+2025-06-24 15:53:02.810 +03:00 [INF] Content root path: B:\1\30\TaskManagerMVC\TaskManager.Web
+2025-06-24 15:53:02.823 +03:00 [INF] Server laptop-mg727ebl:27720:f87dee7a successfully announced in 9.9608 ms
+2025-06-24 15:53:02.826 +03:00 [INF] Server laptop-mg727ebl:27720:f87dee7a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-06-24 15:53:02.832 +03:00 [INF] Server laptop-mg727ebl:27720:f87dee7a all the dispatchers started
+2025-06-24 15:54:12.925 +03:00 [INF] Server laptop-mg727ebl:27720:f87dee7a caught stopping signal...
+2025-06-24 15:54:12.928 +03:00 [INF] Application is shutting down...
+2025-06-24 15:54:13.282 +03:00 [INF] Server laptop-mg727ebl:27720:f87dee7a All dispatchers stopped
+2025-06-24 15:54:13.289 +03:00 [INF] Server laptop-mg727ebl:27720:f87dee7a successfully reported itself as stopped in 4.3029 ms
+2025-06-24 15:54:13.291 +03:00 [INF] Server laptop-mg727ebl:27720:f87dee7a has been stopped in total 363.325 ms
+2025-06-24 15:54:16.892 +03:00 [INF] Start installing Hangfire SQL objects...
+2025-06-24 15:54:17.301 +03:00 [INF] Hangfire SQL objects installed.
+2025-06-24 15:54:18.538 +03:00 [INF] Now listening on: http://localhost:5086
+2025-06-24 15:54:18.547 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-MG727EBL\SQLEXPRESS@TaskManagerDB'
+2025-06-24 15:54:18.549 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-06-24 15:54:18.551 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-06-24 15:54:18.561 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-24 15:54:18.563 +03:00 [INF] Hosting environment: Development
+2025-06-24 15:54:18.564 +03:00 [INF] Content root path: B:\1\30\TaskManagerMVC\TaskManager.Web
+2025-06-24 15:54:18.577 +03:00 [INF] Server laptop-mg727ebl:9584:29ae5576 successfully announced in 9.4154 ms
+2025-06-24 15:54:18.581 +03:00 [INF] Server laptop-mg727ebl:9584:29ae5576 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-06-24 15:54:18.587 +03:00 [INF] Server laptop-mg727ebl:9584:29ae5576 all the dispatchers started
+2025-06-24 15:54:42.457 +03:00 [WRN] Failed to determine the https port for redirect.
+2025-06-24 15:54:42.536 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'TaskManager.Web.Services.Infrastructure.ElasticsearchService' while attempting to activate 'TaskManager.Web.Controllers.ElasticsearchDebugController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method104(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AspNetCoreRateLimit.RateLimitMiddleware`1.Invoke(HttpContext context) in C:\Users\User\Documents\Github\AspNetCoreRateLimit\src\AspNetCoreRateLimit\Middleware\RateLimitMiddleware.cs:line 124
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-24 15:54:52.620 +03:00 [INF] Dashboard loaded for user fbf44302-5ae1-43e9-9ac0-a5869d5d62b9 in 2154ms
+2025-06-24 15:54:52.859 +03:00 [INF] User fbf44302-5ae1-43e9-9ac0-a5869d5d62b9 connected to notifications hub
+2025-06-24 15:55:16.320 +03:00 [INF] Server laptop-mg727ebl:9584:29ae5576 caught stopping signal...
+2025-06-24 15:55:16.323 +03:00 [INF] Application is shutting down...
+2025-06-24 15:55:16.334 +03:00 [INF] User fbf44302-5ae1-43e9-9ac0-a5869d5d62b9 disconnected from notifications hub
+2025-06-24 15:55:16.335 +03:00 [INF] User fbf44302-5ae1-43e9-9ac0-a5869d5d62b9 connected to notifications hub
+2025-06-24 15:55:16.828 +03:00 [INF] Server laptop-mg727ebl:9584:29ae5576 caught stopped signal...
+2025-06-24 15:55:16.925 +03:00 [INF] Server laptop-mg727ebl:9584:29ae5576 All dispatchers stopped
+2025-06-24 15:55:16.930 +03:00 [INF] Server laptop-mg727ebl:9584:29ae5576 successfully reported itself as stopped in 2.3605 ms
+2025-06-24 15:55:16.932 +03:00 [INF] Server laptop-mg727ebl:9584:29ae5576 has been stopped in total 608.5368 ms
+2025-06-24 15:55:46.334 +03:00 [INF] User fbf44302-5ae1-43e9-9ac0-a5869d5d62b9 disconnected from notifications hub

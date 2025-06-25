@@ -1,0 +1,64 @@
+@model TaskManager.Web.ViewModels.Auth.RegisterViewModel
+@{
+    ViewData["Title"] = "Registration Confirmation";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body text-center p-5">
+        <div class="mb-4">
+            <i class="fas fa-envelope-circle-check text-success" style="font-size: 4rem;"></i>
+        </div>
+
+        <h2 class="h3 mb-3 text-success">Registration Successful!</h2>
+        
+        <div class="alert alert-success" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            Your account has been created successfully!
+        </div>
+
+        <p class="text-muted mb-4">
+            Thank you for registering with Task Manager. A confirmation email has been sent to:
+        </p>
+        
+        <div class="bg-light rounded p-3 mb-4">
+            <strong class="text-primary">@Model.Email</strong>
+        </div>
+
+        <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Important:</strong> Please check your email inbox (including spam/junk folder) 
+            for a confirmation link to activate your account.
+        </div>
+
+        <p class="text-muted mb-4">
+            Once you confirm your email address, you'll be able to log in and start managing your tasks.
+        </p>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
+            <a asp-action="ResendConfirmationEmail" asp-route-email="@Model.Email" 
+               class="btn btn-outline-primary me-md-2">
+                <i class="fas fa-redo me-2"></i>Resend Confirmation Email
+            </a>
+            <a asp-action="Login" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt me-2"></i>Go to Login
+            </a>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="bg-light rounded p-3">
+            <small class="text-muted">
+                <i class="fas fa-lightbulb me-1"></i>
+                <strong>Tip:</strong> The confirmation link will expire in 24 hours for security purposes.
+                If you don't receive the email within 10 minutes, please check your spam folder or try resending.
+            </small>
+        </div>
+
+        <div class="mt-4">
+            <p class="text-muted small">
+                Having trouble? <a href="mailto:support@taskmanager.com">Contact our support team</a>
+            </p>
+        </div>
+    </div>
+</div>

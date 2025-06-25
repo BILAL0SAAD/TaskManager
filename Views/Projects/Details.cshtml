@@ -1,0 +1,150 @@
+@model TaskManager.Web.Models.Project
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex align-items-center">
+        <div class="rounded-circle me-3" style="width: 50px; height: 50px; background-color: @Model.Color;"></div>
+        <div>
+            <h1 class="h3 mb-0">@Model.Name</h1>
+            <p class="text-muted mb-0">@Model.TaskCount tasks • @Math.Round(Model.CompletionPercentage)% complete</p>
+        </div>
+    </div>
+    <div class="btn-group" role="group">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+            <i class="fas fa-edit me-2"></i>Edit
+        </a>
+        <a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@Model.Id" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Add Task
+        </a>
+    </div>
+</div>
+
+<!-- Project Info -->
+<div class="row mb-4">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Description</h5>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p class="card-text">@Model.Description</p>
+                }
+                else
+                {
+                    <p class="text-muted">No description provided.</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Progress</h5>
+                <div class="progress mb-3" style="height: 12px;">
+                    <div class="progress-bar" role="progressbar" 
+                         style="width: @Model.CompletionPercentage%; background-color: @Model.Color;"
+                         aria-valuenow="@Model.CompletionPercentage" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="border-end">
+                            <h6 class="text-success mb-0">@Model.CompletedTaskCount</h6>
+                            <small class="text-muted">Completed</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="text-primary mb-0">@(Model.TaskCount - Model.CompletedTaskCount)</h6>
+                        <small class="text-muted">Remaining</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tasks List -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">
+            <i class="fas fa-list-check me-2"></i>Project Tasks
+        </h5>
+        <a asp-controller="Tasks" asp-action="Index" asp-route-projectId="@Model.Id" class="btn btn-sm btn-outline-primary">
+            View All Tasks
+        </a>
+    </div>
+    <div class="card-body">
+        @if (Model.Tasks != null && Model.Tasks.Any())
+        {
+            <div class="list-group list-group-flush">
+                @foreach (var task in Model.Tasks.Take(5))
+                {
+                    <div class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="me-auto">
+                            <div class="d-flex align-items-center">
+                                <span class="@task.PriorityBadgeClass me-2">@task.Priority</span>
+                                <h6 class="mb-1">
+                                    <a asp-controller="Tasks" asp-action="Details" asp-route-id="@task.Id" class="text-decoration-none">
+                                        @task.Title
+                                    </a>
+                                </h6>
+                            </div>
+                            @if (!string.IsNullOrEmpty(task.Description))
+                            {
+                                <p class="mb-1 text-muted">
+                                    @(task.Description.Length > 80 ? task.Description.Substring(0, 80) + "..." : task.Description)
+                                </p>
+                            }
+                            @if (task.DueDate.HasValue)
+                            {
+                                <small class="@(task.IsOverdue ? "text-danger" : "text-muted")">
+                                    <i class="fas fa-calendar me-1"></i>
+                                    Due @task.DueDate.Value.ToString("MMM dd, yyyy")
+                                </small>
+                            }
+                        </div>
+                        <span class="@task.StatusBadgeClass">@task.Status</span>
+                    </div>
+                }
+            </div>
+            
+            @if (Model.TaskCount > 5)
+            {
+                <div class="text-center mt-3">
+                    <a asp-controller="Tasks" asp-action="Index" asp-route-projectId="@Model.Id" class="btn btn-outline-primary">
+                        View All @Model.TaskCount Tasks
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="text-center py-4">
+                <i class="fas fa-tasks fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">No tasks yet</h5>
+                <p class="text-muted">Start by adding your first task to this project.</p>
+                <a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@Model.Id" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Add First Task
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Project Actions -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Projects
+            </a>
+            <div>
+                <small class="text-muted">
+                    Created @Model.CreatedAt.ToString("MMM dd, yyyy")
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

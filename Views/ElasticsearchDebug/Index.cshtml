@@ -1,0 +1,328 @@
+@{
+    ViewData["Title"] = "Elasticsearch Debug Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-bug text-warning me-2"></i>Elasticsearch Debug Dashboard</h2>
+                <div>
+                    <button class="btn btn-outline-success" onclick="runAllTests()">
+                        <i class="fas fa-play me-2"></i>Run All Tests
+                    </button>
+                    <button class="btn btn-outline-danger" onclick="clearResults()">
+                        <i class="fas fa-trash me-2"></i>Clear Results
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Test Controls -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-tools me-2"></i>Test Controls</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-info" onclick="testConnection()">
+                            <i class="fas fa-plug me-2"></i>Test Connection
+                        </button>
+                        
+                        <button class="btn btn-primary" onclick="checkIndex()">
+                            <i class="fas fa-database me-2"></i>Check Index
+                        </button>
+                        
+                        <button class="btn btn-success" onclick="getAllDocuments()">
+                            <i class="fas fa-file-alt me-2"></i>Get All Documents
+                        </button>
+                        
+                        <button class="btn btn-warning" onclick="testDocumentExists()">
+                            <i class="fas fa-search me-2"></i>Test Document Exists
+                        </button>
+                        
+                        <hr>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Search Query:</label>
+                            <input type="text" id="searchQuery" class="form-control" value="asp" placeholder="Enter search term">
+                        </div>
+                        
+                        <button class="btn btn-outline-primary" onclick="testSimpleSearch()">
+                            <i class="fas fa-search me-2"></i>Test Simple Search
+                        </button>
+                        
+                        <button class="btn btn-outline-secondary" onclick="testMatchAll()">
+                            <i class="fas fa-list me-2"></i>Test Match All
+                        </button>
+                        
+                        <hr>
+                        
+                        <button class="btn btn-outline-danger" onclick="recreateIndex()">
+                            <i class="fas fa-redo me-2"></i>Recreate Index
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Status -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-tachometer-alt me-2"></i>Quick Status</h6>
+                </div>
+                <div class="card-body">
+                    <div id="quickStatus">
+                        <div class="text-muted">Run tests to see status...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-terminal me-2"></i>Test Results</h5>
+                </div>
+                <div class="card-body">
+                    <div id="results" style="max-height: 600px; overflow-y: auto;">
+                        <div class="text-muted text-center py-4">
+                            <i class="fas fa-play-circle fa-3x mb-3"></i>
+                            <h5>Ready to Debug</h5>
+                            <p>Click any test button to see results here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.test-result {
+    margin-bottom: 20px;
+    border-left: 4px solid #007bff;
+    background: #f8f9fa;
+    border-radius: 0 5px 5px 0;
+}
+
+.test-result.success {
+    border-left-color: #28a745;
+}
+
+.test-result.error {
+    border-left-color: #dc3545;
+}
+
+.test-result.warning {
+    border-left-color: #ffc107;
+}
+
+.json-display {
+    background: #2d3748;
+    color: #e2e8f0;
+    border-radius: 5px;
+    padding: 15px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.status-item {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.status-item:last-child {
+    border-bottom: none;
+}
+
+.status-badge {
+    font-size: 0.8em;
+    padding: 2px 8px;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+let testResults = {};
+
+async function makeRequest(url, testName) {
+    const startTime = Date.now();
+    
+    try {
+        addResult(testName, 'info', 'Running test...', null, true);
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        const duration = Date.now() - startTime;
+        
+        if (data.error) {
+            addResult(testName, 'error', `Error: ${data.error}`, data, false, duration);
+            testResults[testName] = { status: 'error', data };
+        } else {
+            addResult(testName, 'success', 'Test completed successfully', data, false, duration);
+            testResults[testName] = { status: 'success', data };
+        }
+        
+        updateQuickStatus();
+        
+    } catch (error) {
+        const duration = Date.now() - startTime;
+        addResult(testName, 'error', `Request failed: ${error.message}`, null, false, duration);
+        testResults[testName] = { status: 'error', error: error.message };
+        updateQuickStatus();
+    }
+}
+
+function addResult(testName, type, message, data, isLoading, duration) {
+    const results = document.getElementById('results');
+    
+    // Remove existing result for this test
+    const existingResult = document.getElementById(`result-${testName.replace(/\s+/g, '-')}`);
+    if (existingResult) {
+        existingResult.remove();
+    }
+    
+    const resultDiv = document.createElement('div');
+    resultDiv.id = `result-${testName.replace(/\s+/g, '-')}`;
+    resultDiv.className = `test-result ${type}`;
+    
+    const statusIcon = isLoading ? 
+        '<i class="fas fa-spinner fa-spin"></i>' : 
+        type === 'success' ? '<i class="fas fa-check-circle text-success"></i>' :
+        type === 'error' ? '<i class="fas fa-times-circle text-danger"></i>' :
+        '<i class="fas fa-info-circle text-info"></i>';
+    
+    const durationText = duration ? ` (${duration}ms)` : '';
+    
+    resultDiv.innerHTML = `
+        <div class="p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">${statusIcon} ${testName}${durationText}</h6>
+                <small class="text-muted">${new Date().toLocaleTimeString()}</small>
+            </div>
+            <div class="mb-2">${message}</div>
+            ${data ? `<div class="json-display">${JSON.stringify(data, null, 2)}</div>` : ''}
+        </div>
+    `;
+    
+    // Add to top of results
+    if (results.children.length > 0 && !results.children[0].classList.contains('text-muted')) {
+        results.insertBefore(resultDiv, results.children[0]);
+    } else {
+        results.innerHTML = '';
+        results.appendChild(resultDiv);
+    }
+}
+
+function updateQuickStatus() {
+    const statusDiv = document.getElementById('quickStatus');
+    const tests = Object.keys(testResults);
+    
+    if (tests.length === 0) {
+        statusDiv.innerHTML = '<div class="text-muted">No tests run yet...</div>';
+        return;
+    }
+    
+    const successCount = tests.filter(t => testResults[t].status === 'success').length;
+    const errorCount = tests.filter(t => testResults[t].status === 'error').length;
+    
+    statusDiv.innerHTML = `
+        <div class="status-item">
+            <span>Tests Run:</span>
+            <span class="badge bg-primary status-badge">${tests.length}</span>
+        </div>
+        <div class="status-item">
+            <span>Successful:</span>
+            <span class="badge bg-success status-badge">${successCount}</span>
+        </div>
+        <div class="status-item">
+            <span>Failed:</span>
+            <span class="badge bg-danger status-badge">${errorCount}</span>
+        </div>
+        ${testResults['Get All Documents'] && testResults['Get All Documents'].data ? `
+        <div class="status-item">
+            <span>Documents Found:</span>
+            <span class="badge bg-info status-badge">${testResults['Get All Documents'].data.count || 0}</span>
+        </div>
+        ` : ''}
+    `;
+}
+
+// Test Functions
+async function testConnection() {
+    await makeRequest('/api/debug/elasticsearch/test-connection', 'Test Connection');
+}
+
+async function checkIndex() {
+    await makeRequest('/api/debug/elasticsearch/check-index', 'Check Index');
+}
+
+async function getAllDocuments() {
+    await makeRequest('/api/debug/elasticsearch/get-all-documents', 'Get All Documents');
+}
+
+async function testDocumentExists() {
+    await makeRequest('/api/debug/elasticsearch/test-document-exists', 'Test Document Exists');
+}
+
+async function testSimpleSearch() {
+    const query = document.getElementById('searchQuery').value || 'asp';
+    await makeRequest(`/api/debug/elasticsearch/test-simple-search?query=${encodeURIComponent(query)}`, `Simple Search: "${query}"`);
+}
+
+async function testMatchAll() {
+    await makeRequest('/api/debug/elasticsearch/test-match-all', 'Test Match All');
+}
+
+async function recreateIndex() {
+    if (confirm('This will delete and recreate the index. Are you sure?')) {
+        await makeRequest('/api/debug/elasticsearch/recreate-index', 'Recreate Index');
+    }
+}
+
+async function runAllTests() {
+    const query = document.getElementById('searchQuery').value || 'asp';
+    
+    // Run tests in sequence
+    await testConnection();
+    await checkIndex();
+    await getAllDocuments();
+    await testDocumentExists();
+    await testSimpleSearch();
+    await testMatchAll();
+}
+
+function clearResults() {
+    document.getElementById('results').innerHTML = `
+        <div class="text-muted text-center py-4">
+            <i class="fas fa-broom fa-3x mb-3"></i>
+            <h5>Results Cleared</h5>
+            <p>Run tests to see new results.</p>
+        </div>
+    `;
+    testResults = {};
+    updateQuickStatus();
+}
+
+// Update search input on Enter key
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchQuery');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                testSimpleSearch();
+            }
+        });
+    }
+});
+</script>

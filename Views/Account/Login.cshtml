@@ -1,0 +1,103 @@
+@model TaskManager.Web.ViewModels.Auth.LoginViewModel
+@{
+    ViewData["Title"] = "Sign In";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body p-5">
+        <div class="text-center mb-4">
+            <h2 class="h4 mb-1">Welcome Back</h2>
+            <p class="text-muted">Sign in to your account</p>
+        </div>
+        
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input name="ReturnUrl" value="@ViewData["ReturnUrl"]" type="hidden" />
+            
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email Address</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email" autofocus>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password">
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-check">
+                        <input asp-for="RememberMe" class="form-check-input" type="checkbox">
+                        <label asp-for="RememberMe" class="form-check-label">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+                <div class="col text-end">
+                    <a asp-action="ForgotPassword" class="text-decoration-none small">
+                        Forgot password?
+                    </a>
+                </div>
+            </div>
+            
+            @if (ViewBag.ShowResendLink == true)
+            {
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Your email hasn't been confirmed yet. 
+                    <a asp-action="ResendConfirmationEmail" asp-route-email="@ViewBag.Email" class="alert-link">
+                        Click here to resend confirmation email
+                    </a>
+                </div>
+            }
+            
+            <button type="submit" class="btn btn-primary w-100 mb-3">
+                <span>
+                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                </span>
+            </button>
+            
+            <div class="text-center">
+                <p class="mb-0">
+                    Don't have an account? 
+                    <a asp-action="Register" class="text-decoration-none">Create one here</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.querySelector('[asp-for="Password"]');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+    </script>
+}

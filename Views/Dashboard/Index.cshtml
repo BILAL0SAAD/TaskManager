@@ -1,0 +1,425 @@
+<!-- Views/Dashboard/Index.cshtml -->
+@model TaskManager.Web.ViewModels.Dashboard.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!-- Add debug info in development mode -->
+@if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Debug Info:</strong> Page loaded in @ViewBag.LoadTime ms
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-0">
+                    <i class="fas fa-chart-pie me-2 text-primary"></i>Dashboard
+                </h1>
+                <p class="text-muted">Welcome back! Here's your productivity overview.</p>
+            </div>
+            @if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            {
+                <div>
+                    <form asp-action="ClearCache" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-outline-warning">
+                            <i class="fas fa-trash me-1"></i>Clear Cache
+                        </button>
+                    </form>
+                    <a href="/Dashboard/CacheStats" class="btn btn-sm btn-outline-info ms-2" target="_blank">
+                        <i class="fas fa-info-circle me-1"></i>Cache Stats
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Stats Cards -->
+<div class="row mb-4">
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="text-primary mb-2">
+                    <i class="fas fa-list fa-2x"></i>
+                </div>
+                <h4 class="mb-1">@Model.TotalTasks</h4>
+                <p class="text-muted mb-0">Total Tasks</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="text-success mb-2">
+                    <i class="fas fa-check-circle fa-2x"></i>
+                </div>
+                <h4 class="mb-1">@Model.CompletedTasks</h4>
+                <p class="text-muted mb-0">Completed</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="text-danger mb-2">
+                    <i class="fas fa-exclamation-triangle fa-2x"></i>
+                </div>
+                <h4 class="mb-1">@Model.OverdueTasks</h4>
+                <p class="text-muted mb-0">Overdue</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="text-warning mb-2">
+                    <i class="fas fa-calendar-day fa-2x"></i>
+                </div>
+                <h4 class="mb-1">@Model.TodayTasks</h4>
+                <p class="text-muted mb-0">Due Today</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Tasks -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-white border-bottom-0">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-clock me-2"></i>Recent Tasks
+                    </h5>
+                    <a asp-controller="Tasks" asp-action="Index" class="btn btn-sm btn-outline-primary">
+                        View All <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                @if (Model.RecentTasks.Any())
+                {
+                    @foreach (var task in Model.RecentTasks)
+                    {
+                        <div class="d-flex align-items-center py-2 border-bottom">
+                            <div class="me-3">
+                                <span class="@task.PriorityBadgeClass">@task.Priority</span>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">
+                                    <a asp-controller="Tasks" asp-action="Details" asp-route-id="@task.Id" class="text-decoration-none">
+                                        @task.Title
+                                    </a>
+                                </h6>
+                                <small class="text-muted">
+                                    @if (task.DueDate.HasValue)
+                                    {
+                                        <i class="fas fa-calendar me-1"></i>@task.DueDate.Value.ToString("MMM dd")
+                                    }
+                                </small>
+                            </div>
+                            <span class="@task.StatusBadgeClass">@task.Status</span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-center py-4 text-muted">
+                        <i class="fas fa-inbox fa-2x mb-2"></i>
+                        <p class="mb-0">No recent tasks</p>
+                        <button class="btn btn-sm btn-primary mt-2" onclick="showQuickTaskModal()">
+                            <i class="fas fa-plus me-1"></i>Create Your First Task
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Overview -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-white border-bottom-0">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-folder me-2"></i>Recent Projects
+                    </h5>
+                    <a asp-controller="Projects" asp-action="Index" class="btn btn-sm btn-outline-primary">
+                        View All <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                @if (Model.RecentProjects.Any())
+                {
+                    @foreach (var project in Model.RecentProjects)
+                    {
+                        <div class="d-flex align-items-center py-2 border-bottom">
+                            <div class="me-3">
+                                <div class="rounded-circle" style="width: 20px; height: 20px; background-color: @project.Color;"></div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">
+                                    <a asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id" class="text-decoration-none">
+                                        @project.Name
+                                    </a>
+                                </h6>
+                                <small class="text-muted">@project.TaskCount tasks</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="progress" style="width: 80px; height: 6px;">
+                                    <div class="progress-bar" role="progressbar" style="width: @project.CompletionPercentage%"></div>
+                                </div>
+                                <small class="text-muted">@Math.Round(project.CompletionPercentage)%</small>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-center py-4 text-muted">
+                        <i class="fas fa-folder-open fa-2x mb-2"></i>
+                        <p class="mb-0">No projects yet</p>
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="showQuickProjectModal()">
+                            <i class="fas fa-folder-plus me-1"></i>Create Your First Project
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="mb-3">Quick Actions</h5>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-primary" onclick="showQuickTaskModal()">
+                        <i class="fas fa-plus me-2"></i>New Task
+                    </button>
+                    <button class="btn btn-outline-primary" onclick="showQuickProjectModal()">
+                        <i class="fas fa-folder-plus me-2"></i>New Project
+                    </button>
+                    <a asp-controller="Tasks" asp-action="Index" asp-route-status="InProgress" class="btn btn-outline-secondary">
+                        <i class="fas fa-play me-2"></i>In Progress Tasks
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Task Modal -->
+<div class="modal fade" id="quickTaskModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Quick Create Task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="quickTaskForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Priority</label>
+                            <select name="priority" class="form-select">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                                <option value="Critical">Critical</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Due Date</label>
+                            <input type="date" name="dueDate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="spinner-border spinner-border-sm d-none" id="taskSpinner"></span>
+                        Create Task
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Project Modal -->
+<div class="modal fade" id="quickProjectModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Quick Create Project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="quickProjectForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Color</label>
+                        <input type="color" name="color" class="form-control form-control-color" value="#007bff">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="spinner-border spinner-border-sm d-none" id="projectSpinner"></span>
+                        Create Project
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto-refresh dashboard every 5 minutes for testing
+        @if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+        {
+            <text>
+            console.log('Dashboard loaded at:', new Date());
+            console.log('Load time: @ViewBag.LoadTime ms');
+            </text>
+        }
+
+        // Quick Task Modal
+        function showQuickTaskModal() {
+            new bootstrap.Modal(document.getElementById('quickTaskModal')).show();
+        }
+
+        // Quick Project Modal
+        function showQuickProjectModal() {
+            new bootstrap.Modal(document.getElementById('quickProjectModal')).show();
+        }
+
+        // Quick Task Form Submission
+        document.getElementById('quickTaskForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const spinner = document.getElementById('taskSpinner');
+            const formData = new FormData(e.target);
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            spinner.classList.remove('d-none');
+            
+            try {
+                const response = await fetch('/Tasks/Create', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                });
+                
+                if (response.ok) {
+                    // Close modal and reset form
+                    bootstrap.Modal.getInstance(document.getElementById('quickTaskModal')).hide();
+                    e.target.reset();
+                    
+                    // The SignalR notification will show the success toast
+                    // We can also refresh the dashboard data here if needed
+                    setTimeout(() => {
+                        location.reload(); // Refresh to show new task in recent tasks
+                    }, 1500);
+                } else {
+                    throw new Error('Failed to create task');
+                }
+            } catch (error) {
+                console.error('Error creating task:', error);
+                alert('Failed to create task. Please try again.');
+            } finally {
+                // Reset loading state
+                submitBtn.disabled = false;
+                spinner.classList.add('d-none');
+            }
+        });
+
+        // Quick Project Form Submission
+        document.getElementById('quickProjectForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const spinner = document.getElementById('projectSpinner');
+            const formData = new FormData(e.target);
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            spinner.classList.remove('d-none');
+            
+            try {
+                const response = await fetch('/Projects/Create', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                });
+                
+                if (response.ok) {
+                    // Close modal and reset form
+                    bootstrap.Modal.getInstance(document.getElementById('quickProjectModal')).hide();
+                    e.target.reset();
+                    
+                    // The SignalR notification will show the success toast
+                    // Refresh to show new project in recent projects
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                } else {
+                    throw new Error('Failed to create project');
+                }
+            } catch (error) {
+                console.error('Error creating project:', error);
+                alert('Failed to create project. Please try again.');
+            } finally {
+                // Reset loading state
+                submitBtn.disabled = false;
+                spinner.classList.add('d-none');
+            }
+        });
+
+        // Add CSRF token to forms
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = '@Html.AntiForgeryToken()';
+            const forms = document.querySelectorAll('#quickTaskForm, #quickProjectForm');
+            forms.forEach(form => {
+                if (!form.querySelector('input[name="__RequestVerificationToken"]')) {
+                    const tokenInput = document.createElement('input');
+                    tokenInput.type = 'hidden';
+                    tokenInput.name = '__RequestVerificationToken';
+                    tokenInput.value = token;
+                    form.appendChild(tokenInput);
+                }
+            });
+        });
+    </script>
+}
