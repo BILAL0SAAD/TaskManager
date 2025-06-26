@@ -1,0 +1,1047 @@
+2025-06-26 12:01:33.129 +03:00 [INF] Start installing Hangfire SQL objects...
+2025-06-26 12:01:33.520 +03:00 [INF] Hangfire SQL objects installed.
+2025-06-26 12:01:34.926 +03:00 [INF] ✅ ES SUCCESS: "GET" "http://localhost:9200/_cluster/health?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: {
+  "cluster_name" : "docker-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 2,
+  "active_shards" : 2,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+2025-06-26 12:01:34.933 +03:00 [INF] 🔗 Elasticsearch connection test: true - Cluster Status: "Green"
+2025-06-26 12:01:34.943 +03:00 [INF] ✅ ES SUCCESS: "HEAD" "http://localhost:9200/taskmanager-2025-06?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: null
+2025-06-26 12:01:35.106 +03:00 [INF] Now listening on: http://localhost:5086
+2025-06-26 12:01:35.112 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-MG727EBL\SQLEXPRESS@TaskManagerDB'
+2025-06-26 12:01:35.114 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-06-26 12:01:35.116 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-06-26 12:01:35.126 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-26 12:01:35.127 +03:00 [INF] Hosting environment: Development
+2025-06-26 12:01:35.129 +03:00 [INF] Content root path: B:\1\30\TaskManagerMVC\TaskManager.Web
+2025-06-26 12:01:35.142 +03:00 [INF] Server laptop-mg727ebl:24280:75a61e16 successfully announced in 9.9723 ms
+2025-06-26 12:01:35.146 +03:00 [INF] Server laptop-mg727ebl:24280:75a61e16 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-06-26 12:01:35.153 +03:00 [INF] Server laptop-mg727ebl:24280:75a61e16 all the dispatchers started
+2025-06-26 12:01:35.429 +03:00 [INF] Starting Elasticsearch sync job
+2025-06-26 12:01:35.430 +03:00 [INF] Starting due task notifications job
+2025-06-26 12:01:35.471 +03:00 [INF] ✅ ES SUCCESS: "HEAD" "http://localhost:9200/taskmanager-2025-06?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: null
+2025-06-26 12:01:35.537 +03:00 [INF] Due task notifications job completed. Sent 0 notifications
+2025-06-26 12:01:35.570 +03:00 [INF] No tasks to bulk index
+2025-06-26 12:01:35.572 +03:00 [INF] Successfully synced 0 tasks to Elasticsearch
+2025-06-26 12:01:41.927 +03:00 [WRN] Failed to determine the https port for redirect.
+2025-06-26 12:01:44.353 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:01:47.394 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:01:47.433 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:01:49.045 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:01:49.095 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:01:57.905 +03:00 [INF] ✅ ES SUCCESS: "PUT" "http://localhost:9200/taskmanager-2025-06/_doc/23?pretty=true"
+📤 REQUEST: {"id":23,"title":"siiiiiiiiiiiiii","description":"سشيسشي","priority":"High","status":"Todo","createdAt":"2025-06-26T09:01:57.6298943Z","userId":"28648342-e6f9-4e4d-8f1e-78756ecaa9f5","project":{"id":6,"name":"belal saad","description":"123213","color":"#3b82f6"},"comments":[],"searchContent":"siiiiiiiiiiiiii سشيسشي belal saad ","tags":["priority:high","status:todo","project:belal saad"],"isOverdue":false,"isDeleted":false}
+📥 RESPONSE: {
+  "_index" : "taskmanager-2025-06",
+  "_type" : "_doc",
+  "_id" : "23",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 18,
+  "_primary_term" : 1
+}
+
+2025-06-26 12:01:57.910 +03:00 [INF] Task created: 23 by user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:01:57.943 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Task Created ✅
+2025-06-26 12:01:57.946 +03:00 [INF] Task siiiiiiiiiiiiii created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:02:00.030 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:00.067 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:02.054 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:02.095 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:02.951 +03:00 [INF] ✅ ES SUCCESS: "GET" "http://localhost:9200/_cluster/health?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: {
+  "cluster_name" : "docker-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 2,
+  "active_shards" : 2,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+2025-06-26 12:02:02.955 +03:00 [INF] 🔗 Elasticsearch connection test: true - Cluster Status: "Green"
+2025-06-26 12:02:04.122 +03:00 [INF] ✅ ES SUCCESS: "HEAD" "http://localhost:9200/taskmanager-2025-06?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: null
+2025-06-26 12:02:04.984 +03:00 [INF] 🔍 DEBUG: Getting all tasks for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 from index taskmanager-2025-06
+2025-06-26 12:02:05.672 +03:00 [INF] ✅ ES SUCCESS: "POST" "http://localhost:9200/taskmanager-2025-06/_search?pretty=true&typed_keys=true"
+📤 REQUEST: {"query":{"match_all":{}},"size":100}
+📥 RESPONSE: {
+  "took" : 598,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 19,
+      "relation" : "eq"
+    },
+    "max_score" : 1.0,
+    "hits" : [
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "4",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 4,
+          "title" : "Running Club 1 Edit",
+          "description" : "qqqqqq",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "dueDate" : "2025-06-07T10:56:00",
+          "createdAt" : "2025-06-23T07:56:50.4438436",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 2,
+            "name" : "belal saad",
+            "description" : "ccc",
+            "color" : "#000000"
+          },
+          "comments" : [ ],
+          "searchContent" : "Running Club 1 Edit qqqqqq belal saad ",
+          "tags" : [
+            "priority:medium",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : true,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "5",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 5,
+          "title" : "siiiiiiiiiiiiii",
+          "description" : "siiiiiiiiiii",
+          "priority" : "Critical",
+          "status" : "Todo",
+          "dueDate" : "2025-06-23T12:55:00",
+          "createdAt" : "2025-06-23T09:52:43.4288273",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 2,
+            "name" : "belal saad",
+            "description" : "ccc",
+            "color" : "#000000"
+          },
+          "comments" : [ ],
+          "searchContent" : "siiiiiiiiiiiiii siiiiiiiiiii belal saad ",
+          "tags" : [
+            "priority:critical",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : true,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "6",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 6,
+          "title" : "toto",
+          "description" : "dafa",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "dueDate" : "2025-06-07T15:31:00",
+          "createdAt" : "2025-06-23T12:31:08.0020957",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 3,
+            "name" : "Mohamed ANAS SAAD",
+            "description" : "sdasdasd",
+            "color" : "#df0707"
+          },
+          "comments" : [ ],
+          "searchContent" : "toto dafa Mohamed ANAS SAAD ",
+          "tags" : [
+            "priority:medium",
+            "status:todo",
+            "project:mohamed anas saad"
+          ],
+          "isOverdue" : true,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "8",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 8,
+          "title" : "totoppppp",
+          "description" : "fasafdac",
+          "priority" : "High",
+          "status" : "Todo",
+          "dueDate" : "2025-06-26T11:08:00",
+          "createdAt" : "2025-06-24T08:08:47.2005384",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 2,
+            "name" : "belal saad",
+            "description" : "ccc",
+            "color" : "#000000"
+          },
+          "comments" : [ ],
+          "searchContent" : "totoppppp fasafdac belal saad ",
+          "tags" : [
+            "priority:high",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "9",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 9,
+          "title" : "gg",
+          "description" : "nice game",
+          "priority" : "Low",
+          "status" : "Todo",
+          "dueDate" : "2025-06-18T11:17:00",
+          "createdAt" : "2025-06-24T08:17:27.8163927",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 3,
+            "name" : "Mohamed ANAS SAAD",
+            "description" : "sdasdasd",
+            "color" : "#df0707"
+          },
+          "comments" : [ ],
+          "searchContent" : "gg nice game Mohamed ANAS SAAD ",
+          "tags" : [
+            "priority:low",
+            "status:todo",
+            "project:mohamed anas saad"
+          ],
+          "isOverdue" : true,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "10",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 10,
+          "title" : "not gg",
+          "description" : "not good game",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "dueDate" : "2025-06-27T11:19:00",
+          "createdAt" : "2025-06-24T08:19:47.9170723",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 2,
+            "name" : "belal saad",
+            "description" : "ccc",
+            "color" : "#000000"
+          },
+          "comments" : [ ],
+          "searchContent" : "not gg not good game belal saad ",
+          "tags" : [
+            "priority:medium",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "11",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 11,
+          "title" : "bilal",
+          "description" : "asdasd",
+          "priority" : "High",
+          "status" : "Todo",
+          "dueDate" : "2025-06-12T00:00:00",
+          "createdAt" : "2025-06-24T08:36:11.0621349",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "comments" : [ ],
+          "searchContent" : "bilal asdasd  ",
+          "tags" : [
+            "priority:high",
+            "status:todo"
+          ],
+          "isOverdue" : true,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "12",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 12,
+          "title" : "do so fast ",
+          "description" : "fastttt",
+          "priority" : "Critical",
+          "status" : "Todo",
+          "dueDate" : "2025-06-28T11:44:00",
+          "createdAt" : "2025-06-24T08:44:52.5359956",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 2,
+            "name" : "belal saad",
+            "description" : "ccc",
+            "color" : "#000000"
+          },
+          "comments" : [ ],
+          "searchContent" : "do so fast  fastttt belal saad ",
+          "tags" : [
+            "priority:critical",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "13",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 13,
+          "title" : "test 55",
+          "description" : "asdlsdngk;sd",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "dueDate" : "2025-06-30T12:58:00",
+          "createdAt" : "2025-06-24T09:59:04.6568547",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 2,
+            "name" : "belal saad",
+            "description" : "ccc",
+            "color" : "#000000"
+          },
+          "comments" : [ ],
+          "searchContent" : "test 55 asdlsdngk;sd belal saad ",
+          "tags" : [
+            "priority:medium",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "14",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 14,
+          "title" : "test 9",
+          "description" : "qwdqwd",
+          "priority" : "Critical",
+          "status" : "Todo",
+          "dueDate" : "2025-06-29T13:19:00",
+          "createdAt" : "2025-06-24T10:19:39.1319414",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "comments" : [ ],
+          "searchContent" : "test 9 qwdqwd  ",
+          "tags" : [
+            "priority:critical",
+            "status:todo"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "15",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 15,
+          "title" : "test 10",
+          "description" : "asdsad",
+          "priority" : "Critical",
+          "status" : "Todo",
+          "dueDate" : "2025-07-01T13:23:00",
+          "createdAt" : "2025-06-24T10:23:20.3456135",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 2,
+            "name" : "belal saad",
+            "description" : "ccc",
+            "color" : "#000000"
+          },
+          "comments" : [ ],
+          "searchContent" : "test 10 asdsad belal saad ",
+          "tags" : [
+            "priority:critical",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "16",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 16,
+          "title" : "elasticsearch test",
+          "description" : "elasticsearch test",
+          "priority" : "High",
+          "status" : "Todo",
+          "dueDate" : "2025-06-22T13:29:00",
+          "createdAt" : "2025-06-24T10:29:24.3118403",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 3,
+            "name" : "Mohamed ANAS SAAD",
+            "description" : "sdasdasd",
+            "color" : "#df0707"
+          },
+          "comments" : [ ],
+          "searchContent" : "elasticsearch test elasticsearch test Mohamed ANAS SAAD ",
+          "tags" : [
+            "priority:high",
+            "status:todo",
+            "project:mohamed anas saad"
+          ],
+          "isOverdue" : true,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "17",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 17,
+          "title" : "elasticsearch test 1",
+          "description" : "elasticsearch test 2",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "dueDate" : "2025-07-03T13:43:00",
+          "createdAt" : "2025-06-24T10:44:02.5406000",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 3,
+            "name" : "Mohamed ANAS SAAD",
+            "description" : "sdasdasd",
+            "color" : "#df0707"
+          },
+          "comments" : [ ],
+          "searchContent" : "elasticsearch test 1 elasticsearch test 2 Mohamed ANAS SAAD ",
+          "tags" : [
+            "priority:medium",
+            "status:todo",
+            "project:mohamed anas saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "18",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 18,
+          "title" : "new FieldSort ",
+          "description" : "adsad",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "createdAt" : "2025-06-24T12:02:37.1130010",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 3,
+            "name" : "Mohamed ANAS SAAD",
+            "description" : "sdasdasd",
+            "color" : "#df0707"
+          },
+          "comments" : [ ],
+          "searchContent" : "new FieldSort  adsad Mohamed ANAS SAAD ",
+          "tags" : [
+            "priority:medium",
+            "status:todo",
+            "project:mohamed anas saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "19",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 19,
+          "title" : "asp",
+          "description" : "asdasfdsvsdvcxsd",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "createdAt" : "2025-06-24T12:27:26.7004739",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 3,
+            "name" : "Mohamed ANAS SAAD",
+            "description" : "sdasdasd",
+            "color" : "#df0707"
+          },
+          "comments" : [ ],
+          "searchContent" : "asp asdasfdsvsdvcxsd Mohamed ANAS SAAD ",
+          "tags" : [
+            "priority:medium",
+            "status:todo",
+            "project:mohamed anas saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "20",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 20,
+          "title" : "asp",
+          "description" : "aspd21d",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "createdAt" : "2025-06-24T13:14:45.2703680",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "comments" : [ ],
+          "searchContent" : "asp aspd21d  ",
+          "tags" : [
+            "priority:medium",
+            "status:todo"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "21",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 21,
+          "title" : "elasticsearch test 3",
+          "description" : "elasticsearch test 3",
+          "priority" : "High",
+          "status" : "Todo",
+          "dueDate" : "2025-06-28T09:54:00",
+          "createdAt" : "2025-06-25T06:54:46.2831148",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "project" : {
+            "id" : 2,
+            "name" : "belal saad",
+            "description" : "ccc",
+            "color" : "#000000"
+          },
+          "comments" : [ ],
+          "searchContent" : "elasticsearch test 3 elasticsearch test 3 belal saad ",
+          "tags" : [
+            "priority:high",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "22",
+        "_score" : 1.0,
+        "_routing" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+        "_source" : {
+          "id" : 22,
+          "title" : "test 66",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "createdAt" : "2025-06-25T07:57:08.3691926",
+          "userId" : "fbf44302-5ae1-43e9-9ac0-a5869d5d62b9",
+          "comments" : [ ],
+          "searchContent" : "test 66   ",
+          "tags" : [
+            "priority:medium",
+            "status:todo"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      },
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "23",
+        "_score" : 1.0,
+        "_source" : {
+          "id" : 23,
+          "title" : "siiiiiiiiiiiiii",
+          "description" : "سشيسشي",
+          "priority" : "High",
+          "status" : "Todo",
+          "createdAt" : "2025-06-26T09:01:57.6298943Z",
+          "userId" : "28648342-e6f9-4e4d-8f1e-78756ecaa9f5",
+          "project" : {
+            "id" : 6,
+            "name" : "belal saad",
+            "description" : "123213",
+            "color" : "#3b82f6"
+          },
+          "comments" : [ ],
+          "searchContent" : "siiiiiiiiiiiiii سشيسشي belal saad ",
+          "tags" : [
+            "priority:high",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        }
+      }
+    ]
+  }
+}
+
+2025-06-26 12:02:05.723 +03:00 [INF] 🔍 DEBUG: Raw match-all query returned 19 total documents
+2025-06-26 12:02:05.725 +03:00 [INF] 🔍 DEBUG: Document - Id=4, Title='Running Club 1 Edit', UserId='fbf44302-5ae1-43e9-9ac0-a5869d5d62b9', IsDeleted=false, Status='Todo'
+2025-06-26 12:02:05.728 +03:00 [INF] 🔍 DEBUG: Document - Id=5, Title='siiiiiiiiiiiiii', UserId='fbf44302-5ae1-43e9-9ac0-a5869d5d62b9', IsDeleted=false, Status='Todo'
+2025-06-26 12:02:05.731 +03:00 [INF] 🔍 DEBUG: Document - Id=6, Title='toto', UserId='fbf44302-5ae1-43e9-9ac0-a5869d5d62b9', IsDeleted=false, Status='Todo'
+2025-06-26 12:02:05.734 +03:00 [INF] 🔍 DEBUG: Document - Id=8, Title='totoppppp', UserId='fbf44302-5ae1-43e9-9ac0-a5869d5d62b9', IsDeleted=false, Status='Todo'
+2025-06-26 12:02:05.737 +03:00 [INF] 🔍 DEBUG: Document - Id=9, Title='gg', UserId='fbf44302-5ae1-43e9-9ac0-a5869d5d62b9', IsDeleted=false, Status='Todo'
+2025-06-26 12:02:05.740 +03:00 [INF] 🔍 DEBUG: Found 1 non-deleted tasks for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:02:08.758 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:08.798 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:11.606 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:11.639 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:12.156 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:12.190 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:12.978 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:13.012 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:13.387 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:13.425 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:16.451 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:16.489 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:17.010 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:17.046 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:17.978 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:18.009 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:02:19.668 +03:00 [INF] ✅ ES SUCCESS: "POST" "http://localhost:9200/taskmanager-2025-06/_search?pretty=true&typed_keys=true"
+📤 REQUEST: {"query":{"bool":{"must":[{"term":{"userId":{"value":"28648342-e6f9-4e4d-8f1e-78756ecaa9f5"}}},{"term":{"isDeleted":{"value":false}}},{"wildcard":{"title":{"value":"*لاث*"}}}]}},"size":10,"_source":{"includes":["title"]}}
+📥 RESPONSE: {
+  "took" : 12,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 0,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+2025-06-26 12:02:21.685 +03:00 [INF] ✅ ES SUCCESS: "POST" "http://localhost:9200/taskmanager-2025-06/_search?pretty=true&typed_keys=true"
+📤 REQUEST: {"query":{"bool":{"must":[{"term":{"userId":{"value":"28648342-e6f9-4e4d-8f1e-78756ecaa9f5"}}},{"term":{"isDeleted":{"value":false}}},{"wildcard":{"title":{"value":"*be*"}}}]}},"size":10,"_source":{"includes":["title"]}}
+📥 RESPONSE: {
+  "took" : 3,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 0,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+2025-06-26 12:02:22.418 +03:00 [INF] 🔍 SEARCH: Query='belal', UserId='28648342-e6f9-4e4d-8f1e-78756ecaa9f5', Page=1
+2025-06-26 12:02:22.485 +03:00 [INF] ✅ ES SUCCESS: "POST" "http://localhost:9200/taskmanager-2025-06/_search?pretty=true&typed_keys=true"
+📤 REQUEST: {"from":0,"query":{"bool":{"must":[{"term":{"userId":{"value":"28648342-e6f9-4e4d-8f1e-78756ecaa9f5"}}},{"term":{"isDeleted":{"value":false}}},{"bool":{"minimum_should_match":1,"should":[{"match":{"title":{"query":"belal","boost":3.0}}},{"match":{"description":{"query":"belal","boost":2.0}}},{"match":{"searchContent":{"query":"belal","boost":1.0}}}]}}]}},"size":20,"sort":[{"_score":{"order":"desc"}},{"createdAt":{"order":"desc"}}]}
+📥 RESPONSE: {
+  "took" : 6,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "23",
+        "_score" : 3.4293833,
+        "_source" : {
+          "id" : 23,
+          "title" : "siiiiiiiiiiiiii",
+          "description" : "سشيسشي",
+          "priority" : "High",
+          "status" : "Todo",
+          "createdAt" : "2025-06-26T09:01:57.6298943Z",
+          "userId" : "28648342-e6f9-4e4d-8f1e-78756ecaa9f5",
+          "project" : {
+            "id" : 6,
+            "name" : "belal saad",
+            "description" : "123213",
+            "color" : "#3b82f6"
+          },
+          "comments" : [ ],
+          "searchContent" : "siiiiiiiiiiiiii سشيسشي belal saad ",
+          "tags" : [
+            "priority:high",
+            "status:todo",
+            "project:belal saad"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        },
+        "sort" : [
+          3.4293833,
+          1750928517629
+        ]
+      }
+    ]
+  }
+}
+
+2025-06-26 12:02:22.492 +03:00 [INF] 🔍 SEARCH RESULT: IsValid=true, Total=1, Count=1, Took=6ms
+2025-06-26 12:02:22.505 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:02:22.552 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:03:07.821 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:03:07.875 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:03:09.128 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Task Due Soon ⏰
+2025-06-26 12:03:09.130 +03:00 [INF] Test notification sent: TaskDue for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:03:09.144 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:03:09.183 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:03:11.321 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Task Overdue 🚨
+2025-06-26 12:03:11.323 +03:00 [INF] Test notification sent: TaskOverdue for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:03:11.338 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:03:11.372 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:03:12.466 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Task Completed 🎉
+2025-06-26 12:03:12.468 +03:00 [INF] Test notification sent: TaskCompleted for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:03:12.482 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:03:12.517 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:03:13.300 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Project Created 📁
+2025-06-26 12:03:13.302 +03:00 [INF] Test notification sent: ProjectCreated for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:03:13.315 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:03:13.351 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:03:15.708 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Welcome! 👋
+2025-06-26 12:03:16.217 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Task Due Soon ⏰
+2025-06-26 12:03:16.731 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Great Job! 🎉
+2025-06-26 12:03:17.238 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: New Project 📁
+2025-06-26 12:03:17.251 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:03:17.299 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:03:38.219 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 65ms
+2025-06-26 12:03:38.245 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:03:38.281 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:03:45.812 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 5ms
+2025-06-26 12:03:45.821 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:03:45.859 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:04:00.573 +03:00 [INF] ✅ ES SUCCESS: "PUT" "http://localhost:9200/taskmanager-2025-06/_doc/24?pretty=true"
+📤 REQUEST: {"id":24,"title":"test","description":"asdasd","priority":"Medium","status":"Todo","createdAt":"2025-06-26T09:04:00.5195380Z","userId":"28648342-e6f9-4e4d-8f1e-78756ecaa9f5","comments":[],"searchContent":"test asdasd  ","tags":["priority:medium","status:todo"],"isOverdue":false,"isDeleted":false}
+📥 RESPONSE: {
+  "_index" : "taskmanager-2025-06",
+  "_type" : "_doc",
+  "_id" : "24",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 19,
+  "_primary_term" : 1
+}
+
+2025-06-26 12:04:00.577 +03:00 [INF] Task created: 24 by user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:04:00.583 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Task Created ✅
+2025-06-26 12:04:00.585 +03:00 [INF] Task test created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:04:02.136 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 12ms
+2025-06-26 12:04:02.145 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:04:02.185 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:04:15.743 +03:00 [INF] Project created with ID 7 for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:04:15.748 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Project Created 📁
+2025-06-26 12:04:15.755 +03:00 [INF] Project ProfilePic created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 12:04:17.303 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 2ms
+2025-06-26 12:04:17.311 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:04:17.350 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:04:23.521 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:04:23.560 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:04:24.280 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:04:24.315 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:04:26.544 +03:00 [INF] 🔍 SEARCH: Query='test', UserId='28648342-e6f9-4e4d-8f1e-78756ecaa9f5', Page=1
+2025-06-26 12:04:26.717 +03:00 [INF] ✅ ES SUCCESS: "POST" "http://localhost:9200/taskmanager-2025-06/_search?pretty=true&typed_keys=true"
+📤 REQUEST: {"query":{"bool":{"must":[{"term":{"userId":{"value":"28648342-e6f9-4e4d-8f1e-78756ecaa9f5"}}},{"term":{"isDeleted":{"value":false}}},{"wildcard":{"title":{"value":"*test*"}}}]}},"size":10,"_source":{"includes":["title"]}}
+📥 RESPONSE: {
+  "took" : 360,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : 3.152329,
+    "hits" : [
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "24",
+        "_score" : 3.152329,
+        "_source" : {
+          "title" : "test"
+        }
+      }
+    ]
+  }
+}
+
+2025-06-26 12:04:26.718 +03:00 [INF] ✅ ES SUCCESS: "POST" "http://localhost:9200/taskmanager-2025-06/_search?pretty=true&typed_keys=true"
+📤 REQUEST: {"from":0,"query":{"bool":{"must":[{"term":{"userId":{"value":"28648342-e6f9-4e4d-8f1e-78756ecaa9f5"}}},{"term":{"isDeleted":{"value":false}}},{"bool":{"minimum_should_match":1,"should":[{"match":{"title":{"query":"test","boost":3.0}}},{"match":{"description":{"query":"test","boost":2.0}}},{"match":{"searchContent":{"query":"test","boost":1.0}}}]}}]}},"size":20,"sort":[{"_score":{"order":"desc"}},{"createdAt":{"order":"desc"}}]}
+📥 RESPONSE: {
+  "took" : 140,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [
+      {
+        "_index" : "taskmanager-2025-06",
+        "_type" : "_doc",
+        "_id" : "24",
+        "_score" : 6.662064,
+        "_source" : {
+          "id" : 24,
+          "title" : "test",
+          "description" : "asdasd",
+          "priority" : "Medium",
+          "status" : "Todo",
+          "createdAt" : "2025-06-26T09:04:00.5195380Z",
+          "userId" : "28648342-e6f9-4e4d-8f1e-78756ecaa9f5",
+          "comments" : [ ],
+          "searchContent" : "test asdasd  ",
+          "tags" : [
+            "priority:medium",
+            "status:todo"
+          ],
+          "isOverdue" : false,
+          "isDeleted" : false
+        },
+        "sort" : [
+          6.662064,
+          1750928640519
+        ]
+      }
+    ]
+  }
+}
+
+2025-06-26 12:04:26.730 +03:00 [INF] 🔍 SEARCH RESULT: IsValid=true, Total=1, Count=1, Took=140ms
+2025-06-26 12:04:26.743 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:04:26.790 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:04:30.651 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:04:30.688 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:04:41.979 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:04:44.279 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:10:08.323 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 3ms
+2025-06-26 12:10:08.331 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:10:08.396 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:10:11.168 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:10:11.223 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:10:11.977 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 0ms
+2025-06-26 12:10:11.986 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:10:12.020 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:13:38.296 +03:00 [INF] Server laptop-mg727ebl:24280:75a61e16 caught stopping signal...
+2025-06-26 12:13:38.301 +03:00 [INF] Application is shutting down...
+2025-06-26 12:13:38.305 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:13:38.623 +03:00 [INF] Server laptop-mg727ebl:24280:75a61e16 All dispatchers stopped
+2025-06-26 12:13:38.630 +03:00 [INF] Server laptop-mg727ebl:24280:75a61e16 successfully reported itself as stopped in 4.3066 ms
+2025-06-26 12:13:38.631 +03:00 [INF] Server laptop-mg727ebl:24280:75a61e16 has been stopped in total 329.8916 ms
+2025-06-26 12:14:06.738 +03:00 [INF] Start installing Hangfire SQL objects...
+2025-06-26 12:14:07.140 +03:00 [INF] Hangfire SQL objects installed.
+2025-06-26 12:14:08.657 +03:00 [INF] ✅ ES SUCCESS: "GET" "http://localhost:9200/_cluster/health?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: {
+  "cluster_name" : "docker-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 2,
+  "active_shards" : 2,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+2025-06-26 12:14:08.664 +03:00 [INF] 🔗 Elasticsearch connection test: true - Cluster Status: "Green"
+2025-06-26 12:14:08.675 +03:00 [INF] ✅ ES SUCCESS: "HEAD" "http://localhost:9200/taskmanager-2025-06?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: null
+2025-06-26 12:14:08.857 +03:00 [INF] Now listening on: http://localhost:5086
+2025-06-26 12:14:08.863 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-MG727EBL\SQLEXPRESS@TaskManagerDB'
+2025-06-26 12:14:08.864 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-06-26 12:14:08.866 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-06-26 12:14:08.878 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-26 12:14:08.879 +03:00 [INF] Hosting environment: Development
+2025-06-26 12:14:08.881 +03:00 [INF] Content root path: B:\1\30\TaskManagerMVC\TaskManager.Web
+2025-06-26 12:14:08.896 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a successfully announced in 12.0726 ms
+2025-06-26 12:14:08.900 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-06-26 12:14:08.907 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a all the dispatchers started
+2025-06-26 12:14:29.794 +03:00 [WRN] Failed to determine the https port for redirect.
+2025-06-26 12:14:29.919 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:14:31.675 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:14:31.949 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:14:38.346 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:14:38.386 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:14:40.052 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:14:40.094 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:14:40.973 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:14:41.012 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:15:24.622 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a caught stopping signal...
+2025-06-26 12:15:24.644 +03:00 [INF] Application is shutting down...
+2025-06-26 12:15:24.653 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:15:24.653 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:15:25.158 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a caught stopped signal...
+2025-06-26 12:15:25.467 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a All dispatchers stopped
+2025-06-26 12:15:25.472 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a successfully reported itself as stopped in 2.3229 ms
+2025-06-26 12:15:25.474 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a has been stopped in total 829.6386 ms
+2025-06-26 12:15:54.629 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub

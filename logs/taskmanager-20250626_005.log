@@ -1,0 +1,110 @@
+2025-06-26 12:14:06.738 +03:00 [INF] Start installing Hangfire SQL objects...
+2025-06-26 12:14:07.140 +03:00 [INF] Hangfire SQL objects installed.
+2025-06-26 12:14:08.657 +03:00 [INF] ✅ ES SUCCESS: "GET" "http://localhost:9200/_cluster/health?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: {
+  "cluster_name" : "docker-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 2,
+  "active_shards" : 2,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+2025-06-26 12:14:08.664 +03:00 [INF] 🔗 Elasticsearch connection test: true - Cluster Status: "Green"
+2025-06-26 12:14:08.675 +03:00 [INF] ✅ ES SUCCESS: "HEAD" "http://localhost:9200/taskmanager-2025-06?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: null
+2025-06-26 12:14:08.857 +03:00 [INF] Now listening on: http://localhost:5086
+2025-06-26 12:14:08.863 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-MG727EBL\SQLEXPRESS@TaskManagerDB'
+2025-06-26 12:14:08.864 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-06-26 12:14:08.866 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-06-26 12:14:08.878 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-26 12:14:08.879 +03:00 [INF] Hosting environment: Development
+2025-06-26 12:14:08.881 +03:00 [INF] Content root path: B:\1\30\TaskManagerMVC\TaskManager.Web
+2025-06-26 12:14:08.896 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a successfully announced in 12.0726 ms
+2025-06-26 12:14:08.900 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-06-26 12:14:08.907 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a all the dispatchers started
+2025-06-26 12:14:29.794 +03:00 [WRN] Failed to determine the https port for redirect.
+2025-06-26 12:14:29.919 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:14:31.675 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:14:31.949 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:14:38.346 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:14:38.386 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:14:40.052 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:14:40.094 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:14:40.973 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:14:41.012 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:15:24.622 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a caught stopping signal...
+2025-06-26 12:15:24.644 +03:00 [INF] Application is shutting down...
+2025-06-26 12:15:24.653 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:15:24.653 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:15:25.158 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a caught stopped signal...
+2025-06-26 12:15:25.467 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a All dispatchers stopped
+2025-06-26 12:15:25.472 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a successfully reported itself as stopped in 2.3229 ms
+2025-06-26 12:15:25.474 +03:00 [INF] Server laptop-mg727ebl:23920:3b1a2d2a has been stopped in total 829.6386 ms
+2025-06-26 12:15:54.629 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:16:55.892 +03:00 [INF] Start installing Hangfire SQL objects...
+2025-06-26 12:16:56.347 +03:00 [INF] Hangfire SQL objects installed.
+2025-06-26 12:16:57.831 +03:00 [INF] ✅ ES SUCCESS: "GET" "http://localhost:9200/_cluster/health?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: {
+  "cluster_name" : "docker-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 2,
+  "active_shards" : 2,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+2025-06-26 12:16:57.838 +03:00 [INF] 🔗 Elasticsearch connection test: true - Cluster Status: "Green"
+2025-06-26 12:16:57.850 +03:00 [INF] ✅ ES SUCCESS: "HEAD" "http://localhost:9200/taskmanager-2025-06?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: null
+2025-06-26 12:16:58.033 +03:00 [INF] Now listening on: http://localhost:5086
+2025-06-26 12:16:58.039 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-MG727EBL\SQLEXPRESS@TaskManagerDB'
+2025-06-26 12:16:58.040 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-06-26 12:16:58.042 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-06-26 12:16:58.051 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-26 12:16:58.053 +03:00 [INF] Hosting environment: Development
+2025-06-26 12:16:58.055 +03:00 [INF] Content root path: B:\1\30\TaskManagerMVC\TaskManager.Web
+2025-06-26 12:16:58.067 +03:00 [INF] Server laptop-mg727ebl:22204:0cc37dc1 successfully announced in 9.9014 ms
+2025-06-26 12:16:58.071 +03:00 [INF] Server laptop-mg727ebl:22204:0cc37dc1 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-06-26 12:16:58.078 +03:00 [INF] Server laptop-mg727ebl:22204:0cc37dc1 all the dispatchers started
+2025-06-26 12:17:02.729 +03:00 [WRN] Failed to determine the https port for redirect.
+2025-06-26 12:17:02.949 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:18:02.568 +03:00 [INF] Server laptop-mg727ebl:22204:0cc37dc1 caught stopping signal...
+2025-06-26 12:18:02.571 +03:00 [INF] Application is shutting down...
+2025-06-26 12:18:02.588 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 12:18:02.588 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 12:18:03.075 +03:00 [INF] Server laptop-mg727ebl:22204:0cc37dc1 caught stopped signal...
+2025-06-26 12:18:03.555 +03:00 [INF] Server laptop-mg727ebl:22204:0cc37dc1 All dispatchers stopped
+2025-06-26 12:18:03.560 +03:00 [INF] Server laptop-mg727ebl:22204:0cc37dc1 successfully reported itself as stopped in 2.2775 ms
+2025-06-26 12:18:03.561 +03:00 [INF] Server laptop-mg727ebl:22204:0cc37dc1 has been stopped in total 990.3468 ms
+2025-06-26 12:18:32.572 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub

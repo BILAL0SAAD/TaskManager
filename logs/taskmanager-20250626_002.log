@@ -1,0 +1,197 @@
+2025-06-26 11:42:43.924 +03:00 [INF] Start installing Hangfire SQL objects...
+2025-06-26 11:42:44.651 +03:00 [INF] Hangfire SQL objects installed.
+2025-06-26 11:42:46.775 +03:00 [INF] ✅ ES SUCCESS: "GET" "http://localhost:9200/_cluster/health?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: {
+  "cluster_name" : "docker-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 2,
+  "active_shards" : 2,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+2025-06-26 11:42:46.783 +03:00 [INF] 🔗 Elasticsearch connection test: true - Cluster Status: "Green"
+2025-06-26 11:42:46.792 +03:00 [INF] ✅ ES SUCCESS: "HEAD" "http://localhost:9200/taskmanager-2025-06?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: null
+2025-06-26 11:42:46.980 +03:00 [INF] Now listening on: http://localhost:5086
+2025-06-26 11:42:46.986 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-MG727EBL\SQLEXPRESS@TaskManagerDB'
+2025-06-26 11:42:46.988 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-06-26 11:42:46.989 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-06-26 11:42:46.999 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-26 11:42:47.001 +03:00 [INF] Hosting environment: Development
+2025-06-26 11:42:47.002 +03:00 [INF] Content root path: B:\1\30\TaskManagerMVC\TaskManager.Web
+2025-06-26 11:42:47.015 +03:00 [INF] Server laptop-mg727ebl:14344:f1a8e6db successfully announced in 9.8694 ms
+2025-06-26 11:42:47.019 +03:00 [INF] Server laptop-mg727ebl:14344:f1a8e6db is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-06-26 11:42:47.024 +03:00 [INF] Server laptop-mg727ebl:14344:f1a8e6db all the dispatchers started
+2025-06-26 11:43:00.154 +03:00 [WRN] Failed to determine the https port for redirect.
+2025-06-26 11:43:02.641 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 2368ms
+2025-06-26 11:43:02.878 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:43:05.328 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:43:05.367 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:43:09.024 +03:00 [INF] Project deleted: 4 by user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 11:43:09.028 +03:00 [INF] Project ID 4 deleted for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 11:43:09.048 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:43:09.086 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:43:11.205 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:43:11.249 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:43:18.876 +03:00 [INF] Project created with ID 5 for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 11:43:18.884 +03:00 [ERR] Failed to create project and notification for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+System.InvalidOperationException: Project creation failed; no ID assigned.
+   at TaskManager.Web.Controllers.ProjectsController.Create(CreateProjectViewModel viewModel) in B:\1\30\TaskManagerMVC\TaskManager.Web\Controllers\ProjectsController.cs:line 147
+2025-06-26 11:43:18.913 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:43:18.956 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:43:39.987 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:43:40.022 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:50:01.411 +03:00 [INF] Server laptop-mg727ebl:14344:f1a8e6db caught stopping signal...
+2025-06-26 11:50:01.414 +03:00 [INF] Application is shutting down...
+2025-06-26 11:50:01.425 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:50:01.427 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:50:01.585 +03:00 [INF] Server laptop-mg727ebl:14344:f1a8e6db All dispatchers stopped
+2025-06-26 11:50:01.591 +03:00 [INF] Server laptop-mg727ebl:14344:f1a8e6db successfully reported itself as stopped in 2.3021 ms
+2025-06-26 11:50:01.592 +03:00 [INF] Server laptop-mg727ebl:14344:f1a8e6db has been stopped in total 177.9148 ms
+2025-06-26 11:50:31.422 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:50:41.613 +03:00 [INF] Start installing Hangfire SQL objects...
+2025-06-26 11:50:42.017 +03:00 [INF] Hangfire SQL objects installed.
+2025-06-26 11:50:43.455 +03:00 [INF] ✅ ES SUCCESS: "GET" "http://localhost:9200/_cluster/health?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: {
+  "cluster_name" : "docker-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 2,
+  "active_shards" : 2,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+2025-06-26 11:50:43.462 +03:00 [INF] 🔗 Elasticsearch connection test: true - Cluster Status: "Green"
+2025-06-26 11:50:43.473 +03:00 [INF] ✅ ES SUCCESS: "HEAD" "http://localhost:9200/taskmanager-2025-06?pretty=true"
+📤 REQUEST: null
+📥 RESPONSE: null
+2025-06-26 11:50:43.649 +03:00 [INF] Now listening on: http://localhost:5086
+2025-06-26 11:50:43.655 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-MG727EBL\SQLEXPRESS@TaskManagerDB'
+2025-06-26 11:50:43.657 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-06-26 11:50:43.658 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-06-26 11:50:43.667 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-26 11:50:43.668 +03:00 [INF] Hosting environment: Development
+2025-06-26 11:50:43.670 +03:00 [INF] Content root path: B:\1\30\TaskManagerMVC\TaskManager.Web
+2025-06-26 11:50:43.684 +03:00 [INF] Server laptop-mg727ebl:27852:237f524c successfully announced in 10.5583 ms
+2025-06-26 11:50:43.688 +03:00 [INF] Server laptop-mg727ebl:27852:237f524c is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-06-26 11:50:43.694 +03:00 [INF] Server laptop-mg727ebl:27852:237f524c all the dispatchers started
+2025-06-26 11:50:49.381 +03:00 [WRN] Failed to determine the https port for redirect.
+2025-06-26 11:50:49.477 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:50:55.592 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 2262ms
+2025-06-26 11:50:55.723 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:50:55.783 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:50:57.854 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:50:57.901 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:50:59.529 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:50:59.573 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:51:03.864 +03:00 [INF] Project created with ID 6 for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 11:51:03.917 +03:00 [INF] Notification created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5: Project Created 📁
+2025-06-26 11:51:03.928 +03:00 [INF] Project belal saad created for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5
+2025-06-26 11:51:04.001 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:51:04.049 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:51:06.935 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:51:06.969 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:51:08.371 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:51:08.413 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:51:13.296 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:51:13.339 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:51:14.335 +03:00 [INF] Dashboard loaded for user 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 in 11ms
+2025-06-26 11:51:14.344 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:51:14.381 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:51:16.713 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:51:16.745 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:51:18.284 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'TaskManager.Web.ViewModels.Projects.ProjectDetailsViewModel', but this ViewDataDictionary instance requires a model item of type 'TaskManager.Web.Models.Project'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at lambda_method600(Closure, ViewDataDictionary)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AspNetCoreRateLimit.RateLimitMiddleware`1.Invoke(HttpContext context) in C:\Users\User\Documents\Github\AspNetCoreRateLimit\src\AspNetCoreRateLimit\Middleware\RateLimitMiddleware.cs:line 124
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-26 11:51:18.327 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:51:27.619 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 connected to notifications hub
+2025-06-26 11:51:39.941 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'TaskManager.Web.ViewModels.Projects.ProjectDetailsViewModel', but this ViewDataDictionary instance requires a model item of type 'TaskManager.Web.Models.Project'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method600(Closure, ViewDataDictionary)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AspNetCoreRateLimit.RateLimitMiddleware`1.Invoke(HttpContext context) in C:\Users\User\Documents\Github\AspNetCoreRateLimit\src\AspNetCoreRateLimit\Middleware\RateLimitMiddleware.cs:line 124
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-26 11:51:39.964 +03:00 [INF] User 28648342-e6f9-4e4d-8f1e-78756ecaa9f5 disconnected from notifications hub
+2025-06-26 11:54:42.222 +03:00 [INF] Server laptop-mg727ebl:27852:237f524c caught stopping signal...
+2025-06-26 11:54:42.224 +03:00 [INF] Application is shutting down...
+2025-06-26 11:54:42.684 +03:00 [INF] Server laptop-mg727ebl:27852:237f524c All dispatchers stopped
+2025-06-26 11:54:42.691 +03:00 [INF] Server laptop-mg727ebl:27852:237f524c successfully reported itself as stopped in 4.3187 ms
+2025-06-26 11:54:42.693 +03:00 [INF] Server laptop-mg727ebl:27852:237f524c has been stopped in total 468.2976 ms

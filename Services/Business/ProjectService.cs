@@ -1,10 +1,9 @@
-// Services/ProjectService.cs
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Web.Data;
 using TaskManager.Web.Models;
-using TaskManager.Web.Services.infrastructure;
+using TaskManager.Web.Services.Infrastructure;
 using TaskManager.Web.Services.Interfaces;
-using TaskStatus = TaskManager.Web.Models.TaskStatus; // ✅ FIXED: Explicit alias to resolve ambiguity
+using TaskStatus = TaskManager.Web.Models.TaskStatus;
 
 namespace TaskManager.Web.Services.Business
 {
@@ -24,6 +23,8 @@ namespace TaskManager.Web.Services.Business
             _logger = logger;
         }
 
+        public ApplicationDbContext GetDbContext() => _context;
+
         public async Task<IEnumerable<Project>> GetUserProjectsAsync(string userId)
         {
             var cacheKey = $"user_projects_{userId}";
@@ -32,22 +33,16 @@ namespace TaskManager.Web.Services.Business
             if (cachedProjects != null)
                 return cachedProjects;
 
-            // ✅ SOLUTION: Since TaskCount is computed from Tasks collection, we need to include Tasks
-            // but limit the Tasks data to avoid circular references
             var projects = await _context.Projects
                 .Where(p => p.UserId == userId)
-                .Include(p => p.Tasks.Where(t => !t.IsDeleted)) // ✅ Include only non-deleted tasks
+                .Include(p => p.Tasks.Where(t => !t.IsDeleted))
                 .AsNoTracking()
                 .OrderByDescending(p => p.CreatedAt)
                 .ToListAsync();
 
-            // ✅ Clear navigation properties to prevent serialization cycles while keeping Tasks for computation
             foreach (var project in projects)
             {
-                // Clear User navigation but keep Tasks for computed properties
                 project.User = null!;
-                
-                // Clear navigation properties from tasks to prevent cycles
                 foreach (var task in project.Tasks)
                 {
                     task.Project = null!;
@@ -63,7 +58,6 @@ namespace TaskManager.Web.Services.Business
 
         public async Task<Project?> GetProjectByIdAsync(int id, string userId)
         {
-            // ✅ SOLUTION: Include Tasks for computed properties but clear navigation cycles
             var project = await _context.Projects
                 .Where(p => p.Id == id && p.UserId == userId)
                 .Include(p => p.Tasks.Where(t => !t.IsDeleted))
@@ -72,9 +66,7 @@ namespace TaskManager.Web.Services.Business
 
             if (project != null)
             {
-                // Clear navigation properties to prevent cycles
                 project.User = null!;
-                
                 foreach (var task in project.Tasks)
                 {
                     task.Project = null!;
@@ -87,9 +79,10 @@ namespace TaskManager.Web.Services.Business
             return project;
         }
 
+      
+
         public async Task<Project> CreateProjectAsync(Project project)
         {
-            // ✅ FIXED: Create clean entity for database
             var newProject = new Project
             {
                 Name = project.Name,
@@ -100,33 +93,37 @@ namespace TaskManager.Web.Services.Business
                 IsDeleted = false
             };
             
-            _context.Projects.Add(newProject);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Projects.Add(newProject);
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Project created with ID {ProjectId} for user {UserId}", newProject.Id, newProject.UserId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to create project for user {UserId}", project.UserId);
+                throw;
+            }
 
-            // Clear cache
             await _cacheService.RemoveAsync($"user_projects_{project.UserId}");
-
-            _logger.LogInformation("Project created: {ProjectId} by user {UserId}", newProject.Id, newProject.UserId);
+            
             return newProject;
         }
 
         public async Task<Project> UpdateProjectAsync(Project project)
         {
-            // ✅ FIXED: Update existing entity from database to avoid tracking conflicts
             var existingProject = await _context.Projects
                 .FirstOrDefaultAsync(p => p.Id == project.Id && p.UserId == project.UserId);
 
             if (existingProject == null)
                 throw new InvalidOperationException($"Project with ID {project.Id} not found for user {project.UserId}");
 
-            // Update only the editable properties
             existingProject.Name = project.Name;
             existingProject.Description = project.Description;
             existingProject.Color = project.Color;
             
             await _context.SaveChangesAsync();
 
-            // Clear cache
             await _cacheService.RemoveAsync($"user_projects_{project.UserId}");
 
             _logger.LogInformation("Project updated: {ProjectId} by user {UserId}", project.Id, project.UserId);
@@ -140,7 +137,6 @@ namespace TaskManager.Web.Services.Business
 
             if (project != null)
             {
-                // ✅ IMPROVED: Use ExecuteUpdateAsync for better performance in .NET 9
                 await _context.Tasks
                     .Where(t => t.ProjectId == id && !t.IsDeleted)
                     .ExecuteUpdateAsync(setters => setters.SetProperty(t => t.ProjectId, (int?)null));
@@ -148,7 +144,6 @@ namespace TaskManager.Web.Services.Business
                 _context.Projects.Remove(project);
                 await _context.SaveChangesAsync();
 
-                // Clear cache
                 await _cacheService.RemoveAsync($"user_projects_{userId}");
 
                 _logger.LogInformation("Project deleted: {ProjectId} by user {UserId}", id, userId);

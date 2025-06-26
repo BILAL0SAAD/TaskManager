@@ -88,65 +88,73 @@ namespace TaskManager.Web.Controllers
             return View(viewModel);
         }
 
-        // GET: Projects/Details/5
-        public async Task<IActionResult> Details(int id)
+ // Updated Details action - pass Project model directly
+public async Task<IActionResult> Details(int id)
+{
+    var userId = _userManager.GetUserId(User)!;
+    var project = await _projectService.GetProjectByIdAsync(id, userId);
+
+    if (project == null)
+    {
+        _logger.LogWarning("Project {ProjectId} not found for user {UserId}", id, userId);
+        return NotFound();
+    }
+
+    // Pass the project model directly instead of creating a ViewModel
+    return View(project);
+}
+
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Create(CreateProjectViewModel viewModel)
+{
+    var userId = _userManager.GetUserId(User)!;
+    
+    if (!ModelState.IsValid)
+    {
+        _logger.LogWarning("Invalid model state for project creation");
+        return View(viewModel);
+    }
+
+    var project = new Project
+    {
+        Name = viewModel.Name,
+        Description = viewModel.Description,
+        Color = viewModel.Color,
+        UserId = userId
+    };
+
+    // Use a transaction to ensure project is saved before notification
+    using (var transaction = await _projectService.GetDbContext().Database.BeginTransactionAsync())
+    {
+        try
         {
-            var userId = _userManager.GetUserId(User)!;
-            var project = await _projectService.GetProjectByIdAsync(id, userId);
-
-            if (project == null)
+            // Use the returned project from CreateProjectAsync
+            var savedProject = await _projectService.CreateProjectAsync(project);
+            if (savedProject.Id == 0)
             {
-                _logger.LogWarning("Project {ProjectId} not found for user {UserId}", id, userId);
-                return NotFound();
+                throw new InvalidOperationException("Project creation failed; no ID assigned.");
             }
-
-            var projectDetailsViewModel = new ProjectDetailsViewModel
-            {
-                Id = project.Id,
-                Name = project.Name,
-                Description = project.Description,
-                Color = project.Color,
-                CreatedAt = project.CreatedAt,
-                TaskCount = project.TaskCount,
-                CompletedTaskCount = project.CompletedTaskCount,
-                CompletionPercentage = project.CompletionPercentage
-            };
-
-            return View(projectDetailsViewModel);
+            await _notificationService.NotifyProjectCreatedAsync(userId, savedProject);
+            await transaction.CommitAsync();
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateProjectViewModel viewModel)
+        catch (Exception ex)
         {
-            var userId = _userManager.GetUserId(User)!;
-            
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarning("Invalid model state for project creation");
-                return View(viewModel);
-            }
-
-            var project = new Project
-            {
-                Name = viewModel.Name,
-                Description = viewModel.Description,
-                Color = viewModel.Color,
-                UserId = userId
-            };
-
-            await _projectService.CreateProjectAsync(project);
-
-            // Invalidate cache after creating project
-            await _cacheInvalidation.InvalidateProjectCacheAsync(userId);
-
-            // Send notification for new project
-            await _notificationService.NotifyProjectCreatedAsync(userId, project);
-
-            _logger.LogInformation("Project {ProjectName} created for user {UserId}", project.Name, userId);
-            TempData["SuccessMessage"] = "Project created successfully!";
-            return RedirectToAction(nameof(Index));
+            await transaction.RollbackAsync();
+            _logger.LogError(ex, "Failed to create project and notification for user {UserId}", userId);
+            ModelState.AddModelError("", "An error occurred while creating the project.");
+            return View(viewModel);
         }
+    }
+
+    // Invalidate cache after creating project
+    await _cacheInvalidation.InvalidateProjectCacheAsync(userId);
+
+    _logger.LogInformation("Project {ProjectName} created for user {UserId}", project.Name, userId);
+    TempData["SuccessMessage"] = "Project created successfully!";
+    return RedirectToAction(nameof(Index));
+}
 
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -647,3 +647,4 @@ B:\1\30\TaskManagerMVC\TaskManager.Web\obj\Debug\net9.0\TaskManager.Web.genrunti
 B:\1\30\TaskManagerMVC\TaskManager.Web\obj\Debug\net9.0\ref\TaskManager.Web.dll
 B:\1\30\TaskManagerMVC\TaskManager.Web\bin\Debug\net9.0\Elasticsearch.Net.dll
 B:\1\30\TaskManagerMVC\TaskManager.Web\bin\Debug\net9.0\Nest.dll
+B:\1\30\TaskManagerMVC\TaskManager.Web\obj\Debug\net9.0\TaskManager.Web.sourcelink.json

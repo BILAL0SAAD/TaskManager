@@ -38,47 +38,52 @@ namespace TaskManager.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> TestCachePerformance()
-        {
-            var userId = _userManager.GetUserId(User)!;
-            var results = new List<object>();
+public async Task<IActionResult> TestCachePerformance()
+{
+    var userId = _userManager.GetUserId(User)!;
+    var results = new List<object>();
 
-            // Test 1: Dashboard without cache
-            await _cacheInvalidation.InvalidateUserCacheAsync(userId);
-            var stopwatch = Stopwatch.StartNew();
-            await _dashboardService.GetDashboardDataAsync(userId);
-            stopwatch.Stop();
-            var noCacheTime = stopwatch.ElapsedMilliseconds;
+    // Step 1: Clear existing cache for user
+    await _cacheInvalidation.InvalidateUserCacheAsync(userId);
 
-            // Test 2: Dashboard with cache
-            stopwatch.Restart();
-            await _dashboardService.GetDashboardDataAsync(userId);
-            stopwatch.Stop();
-            var cacheTime = stopwatch.ElapsedMilliseconds;
+    // Step 2: Measure time without cache
+    var stopwatch = Stopwatch.StartNew();
+    await _dashboardService.GetDashboardDataAsync(userId);
+    stopwatch.Stop();
+    var noCacheTime = stopwatch.ElapsedMilliseconds;
 
-            results.Add(new
-            {
-                Test = "Dashboard Load (No Cache)",
-                Time = $"{noCacheTime}ms",
-                Status = noCacheTime < 500 ? "Good" : "Slow"
-            });
+    // Step 3: Measure time with cache
+    stopwatch.Restart();
+    await _dashboardService.GetDashboardDataAsync(userId);
+    stopwatch.Stop();
+    var cacheTime = stopwatch.ElapsedMilliseconds;
 
-            results.Add(new
-            {
-                Test = "Dashboard Load (With Cache)",
-                Time = $"{cacheTime}ms",
-                Status = cacheTime < 100 ? "Excellent" : "Good"
-            });
+    // Step 4: Package results with correct property names
+    results.Add(new Dictionary<string, string>
+    {
+        ["test"] = "Dashboard Load (No Cache)",
+        ["time"] = $"{noCacheTime}ms",
+        ["status"] = noCacheTime < 500 ? "Good" : "Slow"
+    });
 
-            results.Add(new
-            {
-                Test = "Performance Improvement",
-                Time = $"{Math.Round((double)(noCacheTime - cacheTime) / noCacheTime * 100, 1)}%",
-                Status = cacheTime < noCacheTime / 2 ? "Significant" : "Moderate"
-            });
+    results.Add(new Dictionary<string, string>
+    {
+        ["test"] = "Dashboard Load (With Cache)",
+        ["time"] = $"{cacheTime}ms",
+        ["status"] = cacheTime < 100 ? "Excellent" : "Good"
+    });
 
-            return Json(new { success = true, results });
-        }
+    var improvement = Math.Round((double)(noCacheTime - cacheTime) / noCacheTime * 100, 1);
+    results.Add(new Dictionary<string, string>
+    {
+        ["test"] = "Performance Improvement",
+        ["time"] = $"{improvement}%",
+        ["status"] = cacheTime < noCacheTime / 2 ? "Significant" : "Moderate"
+    });
+
+    return Json(new { success = true, results });
+}
+
 
         [HttpPost]
         public async Task<IActionResult> ClearUserCache()
